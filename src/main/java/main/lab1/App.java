@@ -10,22 +10,22 @@ import main.lab1.utils.FileIOUtil;
 
 public class App {
   private static String ACTORS_DATA_PATH = "./data/actors.txt";
-  private static int NUMBER_OF_ACTORS = 10;
+  private static int NUMBER_OF_ACTORS = 1000;
   
   public static void main(String[] args) throws InterruptedException {
     long startTime = System.nanoTime();
     
     ArrayList<Actor> actors = new ArrayList<Actor>();
     ArrayList<String> actorIds = FileIOUtil.readFile(ACTORS_DATA_PATH, NUMBER_OF_ACTORS);
-    System.out.println(actorIds.size());
     for(int i = 0; i < actorIds.size(); i++) {
     	String actorName = actorIds.get(i);
         Actor actor = CineLsdDatabaseService.requestActor(actorName);
         
         float rating = 0;
         float count = 0;
+        ArrayList<String> movies = actor.getMovies();
         for(int j = 0; j < actor.getMovies().size(); j++) {
-        	String movieName = (actor.getMovies().get(j));
+        	String movieName = movies.get(j);
         	Movie movie = CineLsdDatabaseService.requestMovie(movieName);
         	rating += movie.getAverageRating();
         	count ++;
