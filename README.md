@@ -20,3 +20,18 @@ O código cria um pool de threads com um número fixo de threads, o número máx
 Para cada ID de ator na lista de IDs de atores, o código cria uma tarefa Callable que busca o ator correspondente pra calcular sua classificação.
 
 O código possui uma lista de Futures, e depois pode iterar sobre a lista para calcular os resultados
+
+## Resultados
+É possivel perceber uma difença esmagadora nas versões: <br>
+### 1000 atores: <br>
+#### Sequencial: <br>
+Em media a sequencial demorou 90 segundos para fazer as operações
+#### Concorrente (10 threads): <br>
+Em média teve 11 segundos de resposta, uma diferença absurda <br>
+### 10000 atores: <br>
+#### Sequencial: <br>
+Em media a sequencial demorou 847 segundos para fazer as operações <br>
+#### Concorrente (10 threads): <br>
+Em média teve 90 segundos de resposta, mais uma vez sendo uma diferença abismal. A mesma velocidade que a sequencial precisou para fazer 1/10 de atores. <br>
+### Conclusão <br>
+Podemos ver que existe uma relação direta e linear entre a quantidade de threads e a velocidade de resposta, o tempo da reposta praticamente é dividido pela quantidade de threads.
