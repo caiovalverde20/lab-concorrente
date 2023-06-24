@@ -64,10 +64,16 @@ public class AppConcurrent {
     ActorComparator comparator = new ActorComparator();
     actors.sort(comparator);
 
-    System.out.println(actors);
+    int rankingSize = Math.min(10, actors.size());
+    System.out.println("Top " + rankingSize + " actors:");
+    for (int i = 0; i < rankingSize; i++) {
+        Actor actor = actors.get(i);
+        System.out.println((i+1) + ". " + actor.getName() + " - Rating: " + actor.getRating());
+    }
+    
     System.out.println("\n--------------------------------------------------" +
-      "\nTotal execution time in millis: " + ((System.nanoTime() - startTime)/1000000));
-
+      "\nExecução em segundos: " + ((System.nanoTime() - startTime)/1000000000));
+    
     executor.shutdown();
   }
 }
